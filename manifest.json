@@ -1,0 +1,12 @@
+{
+   "content_scripts": [ {
+      "js": [ "js/aBitBetterRTM_Loader.js" ],
+      "matches": [ "http://www.rememberthemilk.com/*", "https://www.rememberthemilk.com/*" ]
+   } ],
+   "description": "Small improvements for Remember The Milk interface",
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC5Q0e7gSjkzyyBjfDrhO7drqMohcHhTRyKdGWoq2mzk+MImgbpTjy9y1SNebtIj/x5J3cDx3cVJYIzp/C9iuCcqwcmDrFc4Hb3ii72Uxs/pBy6oS2l+uX8u1XC0qow0PWBDovTGcEVOY/i9DySTbicjQQewIwI0naPvhoi+ABSNwIDAQAB",
+   "name": "A Bit Better RTM",
+   "permissions": [ "http://www.rememberthemilk.com/*", "https://www.rememberthemilk.com/*" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "0.0.2.9"
+}
