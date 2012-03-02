@@ -23,7 +23,6 @@ ABBRTM.AutocompleteList.prototype.createOutput = function()
 	this.output.style.border = "solid 1px black";
 	this.output.style.background = "white";
 	this.output.style.position = "absolute";
-	this.output.style.width = "150px";
 	this.output.style.visibility = "hidden";
 
 	this.inputField.parentNode.insertBefore(this.output, this.inputField.nextSibling);
@@ -78,6 +77,7 @@ ABBRTM.AutocompleteList.prototype.addCompletion = function(completion)
 	var completionBox = document.createElement("div");
 	completionBox.style.textAlign = "left";
 	completionBox.style.paddingLeft = "2px";
+  completionBox.style.paddingRight = "1em";
 	completionBox.appendChild(document.createTextNode(completion));
 	completionBox.position = this.output.childNodes.length;
  	completionBox.addEventListener("mouseover", mouseOverHandler, false);
