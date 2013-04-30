@@ -24,6 +24,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function() {
   this.shortcuts.push(new ABBRTM.Shortcut('G', this.autocompletes.goTo, this.autocompletes.goTo.show, true, false, false));
   this.shortcuts.push(new ABBRTM.Shortcut('M', this.autocompletes.moveTo, this.autocompletes.moveTo.show, true, false, false));
   this.shortcuts.push(new ABBRTM.Shortcut('/', null, function(){$("#listFilter").focus().effect('highlight', '', 'slow');}, false, false, false));
+  this.shortcuts.push(new ABBRTM.Shortcut('?', null, ABBRTM.Help.showHelp, false, true, false));
 
   if (ABBRTM.configuration.displayTabsToTheLeft()) {
     this.shortcuts.push(new ABBRTM.Shortcut('J', this.listTabs, this.listTabs.selectNextList, false, true, false));
@@ -52,11 +53,11 @@ ABBRTM.ABitBetterRTM.prototype.overrideBodyKeyDownHandler = function() {
     }
 
     var pressed = (ev.charCode) ? ev.charCode : ((ev.which) ? ev.which : ev.keyCode);
-    console.log('pressed: %s', pressed);
-    console.log('ctrlKey: %s', ev.ctrlKey);
-    console.log('shiftKey: %s', ev.shiftKey);
-    console.log('altKey: %s', ev.altKey);
-    console.log('metaKey: %s', ev.metaKey);
+    // console.log('pressed: %s', pressed);
+    // console.log('ctrlKey: %s', ev.ctrlKey);
+    // console.log('shiftKey: %s', ev.shiftKey);
+    // console.log('altKey: %s', ev.altKey);
+    // console.log('metaKey: %s', ev.metaKey);
 
     if (target && (/^(textarea|input|text|password|select|button|submit)/i.test(target.type) || target.id == "map")) {
       return true;

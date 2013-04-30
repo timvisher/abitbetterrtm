@@ -29,6 +29,7 @@
     "js/location.js",
     "js/settings.js",
     "js/shortcut.js",
+    "js/help.js",
     "js/taskList.js",
     "js/utility.js"
   ],
