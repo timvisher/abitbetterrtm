@@ -1,12 +1,36 @@
 {
-   "content_scripts": [ {
-      "js": [ "js/aBitBetterRTM_Loader.js" ],
-      "matches": [ "http://www.rememberthemilk.com/*", "https://www.rememberthemilk.com/*" ]
-   } ],
-   "description": "Small improvements for Remember The Milk interface",
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC5Q0e7gSjkzyyBjfDrhO7drqMohcHhTRyKdGWoq2mzk+MImgbpTjy9y1SNebtIj/x5J3cDx3cVJYIzp/C9iuCcqwcmDrFc4Hb3ii72Uxs/pBy6oS2l+uX8u1XC0qow0PWBDovTGcEVOY/i9DySTbicjQQewIwI0naPvhoi+ABSNwIDAQAB",
-   "name": "A Bit Better RTM",
-   "permissions": [ "http://www.rememberthemilk.com/*", "https://www.rememberthemilk.com/*" ],
-   "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "0.0.3-SNAPSHOT"
+  "content_scripts": [{
+    "js": ["js/aBitBetterRTM_Loader.js"],
+    "matches": ["http://www.rememberthemilk.com/*",
+                "https://www.rememberthemilk.com/*"]
+  }],
+  "description": "Small improvements for Remember The Milk interface",
+  "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC5Q0e7gSjkzyyBjfDrhO7drqMohcHhTRyKdGWoq2mzk+MImgbpTjy9y1SNebtIj/x5J3cDx3cVJYIzp/C9iuCcqwcmDrFc4Hb3ii72Uxs/pBy6oS2l+uX8u1XC0qow0PWBDovTGcEVOY/i9DySTbicjQQewIwI0naPvhoi+ABSNwIDAQAB",
+  "name": "A Bit Better RTM",
+  "permissions": ["http://www.rememberthemilk.com/*",
+                  "https://www.rememberthemilk.com/*"],
+  "update_url": "http://clients2.google.com/service/update2/crx",
+  "version": "0.0.3.1",
+  "web_accessible_resources": [
+    "frameworks/jquery-1.3.2.min.js",
+    "frameworks/jquery-ui-1.7.2.custom.min.js",
+    "css/abitbetterrtm.css.js",
+    "css/ui.resizable.css.js",
+    "js/aBitBetterRTM.js",
+    "js/aBitBetterRTM_Loader.js",
+    "js/autocomplete.js",
+    "js/autocompleteList.js",
+    "js/configuration.js",
+    "js/init.js",
+    "js/listAdder.js",
+    "js/listAutocompleteStore.js",
+    "js/listList.js",
+    "js/listTabs.js",
+    "js/location.js",
+    "js/settings.js",
+    "js/shortcut.js",
+    "js/taskList.js",
+    "js/utility.js"
+  ],
+  "manifest_version": 2
 }

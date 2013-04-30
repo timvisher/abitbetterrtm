@@ -17,8 +17,6 @@ ABBRTM.appendABitBetterRTMCode = function() {
   if (!arguments.callee.done) {
     arguments.callee.done = true;
 
-    ABBRTM.appendScript("js/abbrtm.js");
-
     ABBRTM.appendScript("frameworks/jquery-1.3.2.min.js", jqueryui);
     function jqueryui() { ABBRTM.appendScript("frameworks/jquery-ui-1.7.2.custom.min.js", abitbetterrtmCss); }
     function abitbetterrtmCss() { ABBRTM.appendScript("css/abitbetterrtm.css.js", uiResizableCss); }
