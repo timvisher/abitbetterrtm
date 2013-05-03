@@ -10,6 +10,10 @@ ABBRTM.ListTabs = function(parent) {
 
   $('#detailsbox').css({float: 'left', marginLeft: '10px'});
 
+  if (!ABBRTM.configuration.displayTabs()) {
+    $('#listtabs').hide();
+  }
+
   if (ABBRTM.configuration.displayTabsToTheLeft()) {
     this.$div = $('<div/>')
     .addClass("taskcloudcontent")

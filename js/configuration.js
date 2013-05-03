@@ -40,6 +40,15 @@ ABBRTM.Configuration.prototype.displayTabsToTheLeft = function(value) {
   }
 };
 
+ABBRTM.Configuration.prototype.displayTabs = function(value) {
+  if (value !== undefined) {
+    localStorage["abr_displayTabs"] = value;
+  }
+  else {
+    return localStorage["abr_displayTabs"] !== "false";
+  }
+};
+
 ABBRTM.Configuration.prototype.showTasksCount = function(value) {
   if (value !== undefined) {
     localStorage["abr_showTasksCount"] = value;

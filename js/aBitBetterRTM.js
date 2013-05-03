@@ -1,6 +1,8 @@
+'use strict';
+
 ABBRTM = window.ABBRTM || {};
 
-ABBRTM.ABitBetterRTM = function() {
+ABBRTM.ABitBetterRTM = function () {
   this.settings = new ABBRTM.Settings();
   this.settings.init();
   this.taskList = new ABBRTM.TaskList(this);
@@ -15,34 +17,90 @@ ABBRTM.ABitBetterRTM = function() {
   this.initShortcuts();
   this.overrideBodyKeyDownHandler();
 
-    settingsTabs.addEntry("A Bit Better RTM");
-    settingsView.addState("A Bit Better RTM", [this.settings], settingsTabs);
+  settingsTabs.addEntry("A Bit Better RTM");
+  settingsView.addState("A Bit Better RTM", [this.settings], settingsTabs);
   settingsTabs.blitDiv();
-}
+};
 
-ABBRTM.ABitBetterRTM.prototype.initShortcuts = function() {
-  this.shortcuts.push(new ABBRTM.Shortcut('G', this.autocompletes.goTo, this.autocompletes.goTo.show, true, false, false));
-  this.shortcuts.push(new ABBRTM.Shortcut('M', this.autocompletes.moveTo, this.autocompletes.moveTo.show, true, false, false));
-  this.shortcuts.push(new ABBRTM.Shortcut('/', null, function(){$("#listFilter").focus().effect('highlight', '', 'slow');}, false, false, false));
-  this.shortcuts.push(new ABBRTM.Shortcut('?', null, ABBRTM.Help.showHelp, false, true, false));
+ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
+  ABBRTM.Shortcut.shortcut({
+    key: 'G',
+    owner: this.autocompletes.goTo,
+    handler: this.autocompletes.goTo.show,
+    ctrl: true,
+    shift: false,
+    alt: false
+  });
+  ABBRTM.Shortcut.shortcut({
+    key: 'M',
+    owner: this.autocompletes.moveTo,
+    handler: this.autocompletes.moveTo.show,
+    ctrl: true,
+    shift: false,
+    alt: false
+  });
+  ABBRTM.Shortcut.shortcut({
+    key: '/',
+    owner: null,
+    handler: function(){$("#listFilter").focus().effect('highlight', '', 'slow');},
+    ctrl: false,
+    shift: false,
+    alt: false});
+
+  ABBRTM.Shortcut.shortcut({
+    key: '?',
+    owner: null,
+    handler: ABBRTM.Help.showHelp,
+    ctrl: false,
+    shift: true,
+    alt: false
+  });
 
   if (ABBRTM.configuration.displayTabsToTheLeft()) {
-    this.shortcuts.push(new ABBRTM.Shortcut('J', this.listTabs, this.listTabs.selectNextList, false, true, false));
-    this.shortcuts.push(new ABBRTM.Shortcut('K', this.listTabs, this.listTabs.selectPreviousList, false, true, false));
-    this.shortcuts.push(new ABBRTM.Shortcut('O', this.listTabs, this.listTabs.openSelectedList, false, true, false));
+    ABBRTM.Shortcut.shortcut({
+      key: 'J',
+      owner: this.listTabs,
+      handler: this.listTabs.selectNextList,
+      ctrl: false,
+      shift: true,
+      alt: false
+    });
+    ABBRTM.Shortcut.shortcut({
+      key: 'K',
+      owner: this.listTabs,
+      handler: this.listTabs.selectPreviousList,
+      ctrl: false,
+      shift: true,
+      alt: false
+    });
+    ABBRTM.Shortcut.shortcut({
+      key: 'O',
+      owner: this.listTabs,
+      handler: this.listTabs.openSelectedList,
+      ctrl: false,
+      shift: true,
+      alt: false
+    });
 
     if (ABBRTM.configuration.quickAddList()) {
-      this.shortcuts.push(new ABBRTM.Shortcut('Q', this.listTabs.listAdder, this.listTabs.listAdder.showListEntryBox, false, false, false));
+      ABBRTM.Shortcut.shortcut({
+        key: 'Q',
+        owner: this.listTabs.listAdder,
+        handler: this.listTabs.listAdder.showListEntryBox,
+        ctrl: false,
+        shift: false,
+        alt: false
+      });
     }
   }
 };
 
-ABBRTM.ABitBetterRTM.prototype.initAutocompletes = function() {
+ABBRTM.ABitBetterRTM.prototype.initAutocompletes = function () {
   this.autocompletes.goTo = new ABBRTM.Autocomplete("GO TO: ", new ABBRTM.ListAutocompleteStore(this.listTabs), this.listTabs, this.listTabs.selectListByName);
   this.autocompletes.moveTo = new ABBRTM.Autocomplete("MOVE TO: ", new ABBRTM.ListAutocompleteStore(this.listTabs), this.listTabs, this.listTabs.moveSelectedTasksToListByName);
-}
+};
 
-ABBRTM.ABitBetterRTM.prototype.overrideBodyKeyDownHandler = function() {
+ABBRTM.ABitBetterRTM.prototype.overrideBodyKeyDownHandler = function () {
   var that = this;
   var handleKeyDownEvent = function(ev) {
     ev || (ev = window.event);
@@ -52,8 +110,9 @@ ABBRTM.ABitBetterRTM.prototype.overrideBodyKeyDownHandler = function() {
       return true;
     }
 
-    var pressed = (ev.charCode) ? ev.charCode : ((ev.which) ? ev.which : ev.keyCode);
-    // console.log('pressed: %s', pressed);
+    ev.pressed = (ev.charCode) ? ev.charCode : ((ev.which) ? ev.which : ev.keyCode);
+    // NB: Don't delete. Very useful for debugging
+    // console.log('pressed: %s', ev.pressed);
     // console.log('ctrlKey: %s', ev.ctrlKey);
     // console.log('shiftKey: %s', ev.shiftKey);
     // console.log('altKey: %s', ev.altKey);
@@ -63,15 +122,17 @@ ABBRTM.ABitBetterRTM.prototype.overrideBodyKeyDownHandler = function() {
       return true;
     }
 
-    for (var i = 0; i < that.shortcuts.length; ++i) {
-      if ((that.shortcuts[i].key === pressed) &&
-          (that.shortcuts[i].ctrlKey === ev.ctrlKey) &&
-          (that.shortcuts[i].shiftKey === ev.shiftKey) &&
-          (that.shortcuts[i].altKey === ev.altKey) &&
+    for (var i = 0; i < ABBRTM.Shortcut.shortcuts.length; ++i) {
+      if ((ABBRTM.Shortcut.shortcuts[i][0].key === ev.pressed) &&
+          (ABBRTM.Shortcut.shortcuts[i][0].ctrl === ev.ctrlKey) &&
+          (ABBRTM.Shortcut.shortcuts[i][0].shift === ev.shiftKey) &&
+          (ABBRTM.Shortcut.shortcuts[i][0].alt === ev.altKey) &&
           (ev.metaKey === false)) {
-        that.shortcuts[i].run();
-        utility.stopEvent(ev);
-        return false;
+        for (var h = 0; h < ABBRTM.Shortcut.shortcuts[i][1].length; h += 1) {
+          ABBRTM.Shortcut.run(ABBRTM.Shortcut.shortcuts[i][1][h]);
+          utility.stopEvent(ev);
+          return false;
+        }
       }
     }
 
@@ -89,4 +150,4 @@ ABBRTM.ABitBetterRTM.prototype.overrideBodyKeyDownHandler = function() {
       return true;
     };
   }
-}
+};
