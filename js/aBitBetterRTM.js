@@ -27,6 +27,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
     key: 'G',
     owner: this.autocompletes.goTo,
     handler: this.autocompletes.goTo.show,
+    description: "Go To List",
     ctrl: true,
     shift: false,
     alt: false
@@ -35,6 +36,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
     key: 'M',
     owner: this.autocompletes.moveTo,
     handler: this.autocompletes.moveTo.show,
+    description: "Move Task(s) To List",
     ctrl: true,
     shift: false,
     alt: false
@@ -43,6 +45,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
     key: '/',
     owner: null,
     handler: function(){$("#listFilter").focus().effect('highlight', '', 'slow');},
+    description: "Focus Search",
     ctrl: false,
     shift: false,
     alt: false});
@@ -51,6 +54,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
     key: '?',
     owner: null,
     handler: ABBRTM.Help.showHelp,
+    description: "Display Help",
     ctrl: false,
     shift: true,
     alt: false
@@ -61,6 +65,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
       key: 'J',
       owner: this.listTabs,
       handler: this.listTabs.selectNextList,
+      description: "Select Next List",
       ctrl: false,
       shift: true,
       alt: false
@@ -69,6 +74,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
       key: 'K',
       owner: this.listTabs,
       handler: this.listTabs.selectPreviousList,
+      description: "Select Previous List",
       ctrl: false,
       shift: true,
       alt: false
@@ -77,6 +83,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
       key: 'O',
       owner: this.listTabs,
       handler: this.listTabs.openSelectedList,
+      description: "Open Selected List",
       ctrl: false,
       shift: true,
       alt: false
@@ -87,6 +94,7 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
         key: 'Q',
         owner: this.listTabs.listAdder,
         handler: this.listTabs.listAdder.showListEntryBox,
+        description: "Add List",
         ctrl: false,
         shift: false,
         alt: false
