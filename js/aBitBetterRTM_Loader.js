@@ -13,13 +13,28 @@ ABBRTM.appendScript = function(src, callback) {
   }
 }
 
+ABBRTM.appendTemplateString = function (scriptSrc) {
+  $(scriptSrc).appendTo(window.top.document.body);
+};
+
+ABBRTM.appendTemplate = function (src) {
+  $.get(chrome.extension.getURL(src), ABBRTM.appendTemplateString);
+};
+
 ABBRTM.appendABitBetterRTMCode = function() {
   if (!arguments.callee.done) {
     arguments.callee.done = true;
 
-    ABBRTM.appendScript("frameworks/jquery-1.3.2.min.js", jqueryui);
+    var templates = function () {
+      ABBRTM.appendTemplate('templates/help.html');
+      ABBRTM.appendScript("frameworks/jquery-ui-1.7.2.custom.min.js", abitbetterrtmCss);
+    };
+    var underscore = function () {
+      ABBRTM.appendScript("frameworks/underscore-1.4.4.min.js", templates);
+    };
+    ABBRTM.appendScript("frameworks/jquery-1.3.2.min.js", underscore);
     ABBRTM.appendScript("js/help.js");
-    function jqueryui() { ABBRTM.appendScript("frameworks/jquery-ui-1.7.2.custom.min.js", abitbetterrtmCss); }
+    ABBRTM.appendScript('js/template.js');
     function abitbetterrtmCss() { ABBRTM.appendScript("css/abitbetterrtm.css.js", uiResizableCss); }
     function uiResizableCss() { ABBRTM.appendScript("css/ui.resizable.css.js", utility); }
     function utility() { ABBRTM.appendScript("js/utility.js", abrLocation); }

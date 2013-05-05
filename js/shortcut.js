@@ -74,7 +74,7 @@ ABBRTM.Shortcut = (function () {
     '?': 191
   };
 
-  abbrtmShortcut.keyToString = function (key) {
+  abbrtmShortcut.keyToKeyString = function (key) {
     var str;
 
     str = key.key;
@@ -95,7 +95,11 @@ ABBRTM.Shortcut = (function () {
       str = '^' + str;
     }
 
-    return str + ': ' + key.description;
+    return str;
+  };
+
+  abbrtmShortcut.keyToString = function (key) {
+    return self.keyToKeyString(key) + ': ' + key.description;
   };
 
   abbrtmShortcut.run = function (key) {
