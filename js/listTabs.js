@@ -8,8 +8,6 @@ ABBRTM.ListTabs = function(parent) {
   this.tasksCountCache = {};
   this.itemClickHandler = $("#listtabs li").attr("onclick");
 
-  // $('#detailsbox').css({float: 'left', marginLeft: '10px'});
-
   if (ABBRTM.configuration.displayTabsToTheLeft() && ABBRTM.configuration.displayTabs()) {
     this.$div = $('<div/>')
     .addClass("taskcloudcontent")
