@@ -9,7 +9,10 @@ ABBRTM.HelpHud = (function () {
   var self = abbrtmHelpHud;
 
   abbrtmHelpHud.keyToHelpNodes = function (key) {
-    return ABBRTM.Template.tmpl('help-key-description-pair', key);
+    return ABBRTM.Template.tmpl('help-key-description-pair', {
+      key: ABBRTM.Shortcut.keyToKeyString(key),
+      description: key.description
+    });
   };
 
   abbrtmHelpHud.$el = function () {
@@ -43,8 +46,12 @@ ABBRTM.HelpHud = (function () {
   abbrtmHelpHud.toggleHelpHud = function () {
     var helpKeys, keyTmpls;
 
-    if (self.$el().hasClass('s-shown')) {
-      self.$el().removeClass('s-shown');
+    if (!self.$embeddingBody) {
+      self.$embeddingBody = $(window.top.document.body);
+    }
+
+    if (self.$embeddingBody.hasClass('abbrtm-s-help-hud-shown')) {
+      self.$embeddingBody.removeClass('abbrtm-s-help-hud-shown');
       return true;
     }
 
@@ -57,7 +64,7 @@ ABBRTM.HelpHud = (function () {
       $(t).appendTo(self.$tbodyEl());
     });
 
-    self.$el().addClass('s-shown');
+    self.$embeddingBody.addClass('abbrtm-s-help-hud-shown');
     return true;
   };
 
