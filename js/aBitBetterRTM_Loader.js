@@ -38,6 +38,7 @@ ABBRTM.appendABitBetterRTMCode = function() {
     var templates = function () {
       ABBRTM.appendTemplate('templates/help-hud.html');
       ABBRTM.appendTemplate('templates/help-key-description-pair.html');
+      ABBRTM.appendTemplate('templates/settings.html');
       ABBRTM.appendScript("frameworks/jquery-ui-1.7.2.custom.min.js", abitbetterrtmCss);
     };
     var underscore = function () {
@@ -47,6 +48,7 @@ ABBRTM.appendABitBetterRTMCode = function() {
     ABBRTM.appendScript("js/help-hud.js");
     ABBRTM.appendScript('js/template.js');
     ABBRTM.appendCss('css/help-hud.css');
+    ABBRTM.appendCss('css/settings.css');
     function abitbetterrtmCss() { ABBRTM.appendScript("css/abitbetterrtm.css.js", uiResizableCss); }
     function uiResizableCss() { ABBRTM.appendScript("css/ui.resizable.css.js", utility); }
     function utility() { ABBRTM.appendScript("js/utility.js", abrLocation); }
