@@ -13,6 +13,16 @@ ABBRTM.appendScript = function(src, callback) {
   }
 }
 
+ABBRTM.appendCss = function (src) {
+  if (!window.top.document.getElementById(src)) {
+    var cssElement = window.top.document.createElement('link');
+    cssElement.rel = 'stylesheet';
+    cssElement.href = chrome.extension.getURL(src);
+    cssElement.id = src;
+    window.top.document.body.appendChild(cssElement);
+  }
+};
+
 ABBRTM.appendTemplateString = function (scriptSrc) {
   $(scriptSrc).appendTo(window.top.document.body);
 };
@@ -26,15 +36,17 @@ ABBRTM.appendABitBetterRTMCode = function() {
     arguments.callee.done = true;
 
     var templates = function () {
-      ABBRTM.appendTemplate('templates/help.html');
+      ABBRTM.appendTemplate('templates/help-hud.html');
+      ABBRTM.appendTemplate('templates/help-key-description-pair.html');
       ABBRTM.appendScript("frameworks/jquery-ui-1.7.2.custom.min.js", abitbetterrtmCss);
     };
     var underscore = function () {
       ABBRTM.appendScript("frameworks/underscore-1.4.4.min.js", templates);
     };
     ABBRTM.appendScript("frameworks/jquery-1.3.2.min.js", underscore);
-    ABBRTM.appendScript("js/help.js");
+    ABBRTM.appendScript("js/help-hud.js");
     ABBRTM.appendScript('js/template.js');
+    ABBRTM.appendCss('css/help-hud.css');
     function abitbetterrtmCss() { ABBRTM.appendScript("css/abitbetterrtm.css.js", uiResizableCss); }
     function uiResizableCss() { ABBRTM.appendScript("css/ui.resizable.css.js", utility); }
     function utility() { ABBRTM.appendScript("js/utility.js", abrLocation); }

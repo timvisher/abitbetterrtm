@@ -53,8 +53,8 @@ ABBRTM.ABitBetterRTM.prototype.initShortcuts = function () {
   ABBRTM.Shortcut.shortcut({
     key: '?',
     owner: null,
-    handler: ABBRTM.Help.showHelp,
-    description: "Display Help",
+    handler: ABBRTM.HelpHud.toggleHelpHud,
+    description: "Toggle Help HUD",
     ctrl: false,
     shift: true,
     alt: false

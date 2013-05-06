@@ -11,12 +11,20 @@ ABBRTM.Template = (function () {
   abbrtmTemplate.tmplFns = {};
 
   abbrtmTemplate.tmpl = function (tmplId, data) {
+    if (0 > tmplId.indexOf('abbrtm-')) {
+      tmplId = 'abbrtm-' + tmplId;
+    }
+
     if (0 > tmplId.indexOf('-template')) {
       tmplId += '-template';
     }
 
     if (self.tmplFns[tmplId]) {
-      return self.tmplFns[tmplId](data);
+      if (data) {
+        return self.tmplFns[tmplId](data);
+      }
+
+      return self.tmplFns[tmplId]();
     }
 
     var $tmpl = $('#' + tmplId);
