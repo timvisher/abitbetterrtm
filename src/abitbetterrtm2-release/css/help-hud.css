@@ -1,0 +1,40 @@
+#abbrtm-help-hud-container {
+   box-sizing:    border-box;
+   padding:       20px;
+   position:      fixed;
+   width:         75%;
+   height:        75%;
+   top:           12.5%;
+   left:          12.5%;
+   background:    rgba(255,255,255,0.9);
+   border:        solid 5px #ccc;
+   border-radius: 15px;
+   z-index:       50;
+   display:       none;
+}
+
+.abbrtm-s-help-hud-shown #abbrtm-help-hud-container {
+   display: block;
+}
+
+.abbrtm-s-help-hud-shown #content {
+   -webkit-filter: blur(2px);
+}
+
+#abbrtm-help-hud-container * {
+   box-sizing: border-box;
+}
+
+#abbrtm-help-hud {
+   width: 100%;
+}
+
+.abbrtm-help-description {
+   text-align: left;
+}
+
+.abbrtm-help-key {
+   width:         20px;
+   text-align:    right;
+   padding-right: 20px;
+}

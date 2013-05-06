@@ -1,0 +1,45 @@
+{
+  "content_scripts": [{
+    "js": [
+      "js/aBitBetterRTM_Loader.js",
+      "frameworks/jquery-1.3.2.min.js"
+    ],
+    "matches": ["http://www.rememberthemilk.com/*",
+                "https://www.rememberthemilk.com/*"]
+  }],
+  "description": "Small improvements for Remember The Milk interface",
+  "name": "A Bit Better RTM 2",
+  "permissions": ["http://www.rememberthemilk.com/*",
+                  "https://www.rememberthemilk.com/*"],
+  "version": "0.0.3.1",
+  "web_accessible_resources": [
+    "frameworks/jquery-1.3.2.min.js",
+    "frameworks/jquery-ui-1.7.2.custom.min.js",
+    "frameworks/underscore-1.4.4.min.js",
+    "templates/help-key-description-pair.html",
+    "templates/help-hud.html",
+    "templates/settings.html",
+    "css/abitbetterrtm.css.js",
+    "css/ui.resizable.css.js",
+    "css/help-hud.css",
+    "css/settings.css",
+    "js/aBitBetterRTM.js",
+    "js/aBitBetterRTM_Loader.js",
+    "js/autocomplete.js",
+    "js/autocompleteList.js",
+    "js/configuration.js",
+    "js/init.js",
+    "js/listAdder.js",
+    "js/listAutocompleteStore.js",
+    "js/listList.js",
+    "js/listTabs.js",
+    "js/location.js",
+    "js/settings.js",
+    "js/shortcut.js",
+    "js/help-hud.js",
+    "js/taskList.js",
+    "js/utility.js",
+    "js/template.js"
+  ],
+  "manifest_version": 2
+}
