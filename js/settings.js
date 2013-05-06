@@ -1,13 +1,11 @@
 ABBRTM = window.ABBRTM || {};
 
-ABBRTM.Settings = function()
-{
+ABBRTM.Settings = function () {
   this.mbn = null;
   this.div = document.createElement("div");
 
   var generalSettings = document.getElementById("general");
-  if (generalSettings)
-  {
+  if (generalSettings) {
     generalSettings.parentNode.appendChild(this.div);
   }
 
@@ -30,28 +28,24 @@ ABBRTM.Settings = function()
   this.settingsCancel.disabled = true;
 }
 
-ABBRTM.Settings.prototype.init = function()
-{
+ABBRTM.Settings.prototype.init = function () {
   this.mbn = this.getUniqueMessageBusName();
   this.loadSettings();
 
   var that = this;
-  var optionClickHandler = function()
-  {
+  var optionClickHandler = function () {
     that.settingsSave.disabled = false;
     that.settingsCancel.disabled = false;
   }
 
-  var cancelClickHandler = function(event)
-  {
+  var cancelClickHandler = function(event) {
     that.loadSettings();
     that.settingsSave.disabled = true;
     that.settingsCancel.disabled = true;
     return false;
   }
 
-  var saveClickHandler = function()
-  {
+  var saveClickHandler = function () {
     that.saveSettings();
     that.settingsSave.disabled = true;
     that.settingsCancel.disabled = true;
@@ -63,6 +57,8 @@ ABBRTM.Settings.prototype.init = function()
   this.tasksCount_off.addEventListener("click", optionClickHandler, false);
   this.tabsOnTheLeft_on.addEventListener("click", optionClickHandler, false);
   this.tabsOnTheLeft_off.addEventListener("click", optionClickHandler, false);
+  this.displayTabsOn.addEventListener("click", optionClickHandler, false);
+  this.displayTabsOff.addEventListener("click", optionClickHandler, false);
   this.quickAddList_on.addEventListener("click", optionClickHandler, false);
   this.quickAddList_off.addEventListener("click", optionClickHandler, false);
   this.uniqueURL_on.addEventListener("click", optionClickHandler, false);
@@ -71,52 +67,43 @@ ABBRTM.Settings.prototype.init = function()
   this.settingsSave.addEventListener("click", saveClickHandler, false);;
 }
 
-ABBRTM.Settings.prototype.getUniqueMessageBusName = function()
-{
+ABBRTM.Settings.prototype.getUniqueMessageBusName = function () {
   return "abitbetterrtm.settings.";
 };
 
-ABBRTM.Settings.prototype.loadSettings = function()
-{
-  if (ABBRTM.configuration.showTasksCount() === true)
-  {
+ABBRTM.Settings.prototype.loadSettings = function () {
+  if (ABBRTM.configuration.showTasksCount() === true) {
     this.tasksCount_on.checked = 'true';
-  }
-  else
-  {
+  } else {
     this.tasksCount_off.checked = 'true';
   }
 
-  if (ABBRTM.configuration.displayTabsToTheLeft() === true)
-  {
+  if (ABBRTM.configuration.displayTabsToTheLeft() === true) {
     this.tabsOnTheLeft_on.checked = 'true';
-  }
-  else
-  {
+  } else {
     this.tabsOnTheLeft_off.checked = 'true';
   }
 
-  if (ABBRTM.configuration.quickAddList() === true)
-  {
-    this.quickAddList_on.checked = 'true';
+  if (ABBRTM.configuration.displayTabs() === true) {
+    this.displayTabsOn.checked = 'true';
+  } else {
+    this.displayTabsOff.checked = 'true';
   }
-  else
-  {
+
+  if (ABBRTM.configuration.quickAddList() === true) {
+    this.quickAddList_on.checked = 'true';
+  } else {
     this.quickAddList_off.checked = 'true';
   }
 
-  if (ABBRTM.configuration.uniqueURLForListAndTask() === true)
-  {
+  if (ABBRTM.configuration.uniqueURLForListAndTask() === true) {
     this.uniqueURL_on.checked = 'true';
-  }
-  else
-  {
+  } else {
     this.uniqueURL_off.checked = 'true';
   }
 };
 
-ABBRTM.Settings.prototype.saveSettings = function()
-{
+ABBRTM.Settings.prototype.saveSettings = function () {
   ABBRTM.configuration.showTasksCount(this.tasksCount_on.checked);
   ABBRTM.configuration.displayTabsToTheLeft(this.tabsOnTheLeft_on.checked);
   ABBRTM.configuration.displayTabs(this.displayTabsOn.checked);
@@ -124,12 +111,10 @@ ABBRTM.Settings.prototype.saveSettings = function()
   ABBRTM.configuration.uniqueURLForListAndTask(this.uniqueURL_on.checked);
 };
 
-ABBRTM.Settings.prototype.hide = function()
-{
+ABBRTM.Settings.prototype.hide = function () {
   this.div.style.display = "none";
 };
 
-ABBRTM.Settings.prototype.show = function()
-{
+ABBRTM.Settings.prototype.show = function () {
   this.div.style.display = "";
 };
