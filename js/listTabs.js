@@ -8,17 +8,13 @@ ABBRTM.ListTabs = function(parent) {
   this.tasksCountCache = {};
   this.itemClickHandler = $("#listtabs li").attr("onclick");
 
-  $('#detailsbox').css({float: 'left', marginLeft: '10px'});
-
-  if (!ABBRTM.configuration.displayTabs()) {
-    $('#listtabs').hide();
-  }
+  // $('#detailsbox').css({float: 'left', marginLeft: '10px'});
 
   if (ABBRTM.configuration.displayTabsToTheLeft()) {
     this.$div = $('<div/>')
     .addClass("taskcloudcontent")
-    .css({border: "1px solid #CACACA", borderRadius: "7px", padding: "5px 4px", cssFloat: "left", marginRight: "5px", display: "none"})
-    .prependTo("#appview");
+      .css({border: "1px solid #CACACA", borderRadius: "7px", padding: "5px 4px", cssFloat: "left", marginRight: "5px"})
+      .prependTo("#appview");
 
     var $listTabsDiv = $(listTabs.div)
     .attr("class", "")
@@ -49,7 +45,7 @@ ABBRTM.ListTabs = function(parent) {
       $("#content").width(980);
     }
     else if (e[1][1] === "Tasks") {
-      that.$div;
+      that.$div.show();
       that.blitDiv();
     }
     };
@@ -301,6 +297,10 @@ ABBRTM.ListTabs.prototype.blitDiv = function() {
         }
     });
 
+    if (!ABBRTM.configuration.displayTabs()) {
+      $('#listtabs').hide();
+    }
+
     this.hideDisabledLists();
 
     if (ABBRTM.configuration.showTasksCount() === true) {
@@ -315,7 +315,7 @@ ABBRTM.ListTabs.prototype.blitDiv = function() {
       contentWidth += this.$div.width() + 10;
     }
 
-    // $("#content").width(contentWidth);
+    $("#content").width(contentWidth);
 
     var that = this;
     $list.sortable(
